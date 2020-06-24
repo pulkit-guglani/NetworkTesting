@@ -5,7 +5,7 @@ public class TurnManager : MonoBehaviour
 {
     private SyncPropertyAgent syncAgent;
     private NetworkID nID;
-
+   
     private const string TURN = "Turn";
 
     private void Start()
@@ -16,7 +16,8 @@ public class TurnManager : MonoBehaviour
 
     public void ChangeTurn()
     {
-        if(syncAgent.GetPropertyWithName(TURN).GetIntValue() == 1)
+        int currentTurn = syncAgent.GetPropertyWithName(TURN).GetIntValue();
+        if(currentTurn == 1)
         {
             syncAgent.Modify(TURN, 2);
         }
@@ -24,5 +25,15 @@ public class TurnManager : MonoBehaviour
         {
             syncAgent.Modify(TURN, 1);
         }
+        Debug.Log("turn online vala hai : " + syncAgent.GetPropertyWithName(TURN).GetIntValue());
+
+      //  Debug.Log("abhi baari iski hai: "+currentTurn);
     }
+
+    public void debugKr()
+    {
+        int currentTurn = syncAgent.GetPropertyWithName(TURN).GetIntValue();
+        Debug.Log("abhi baari iski hai: "+currentTurn);
+    }
+    
 }
